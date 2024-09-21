@@ -1,11 +1,6 @@
-# Project Title
+# Zylo
 
-A brief description of your project.
-
-## Features
-
-- Fast Refresh with Vite
-- ESLint for code quality
+Online site for Zumba classes
 
 ## Getting Started
 
@@ -96,7 +91,3 @@ This project includes ESLint for code quality. To enable type-aware lint rules, 
 ## Contributing
 
 If you want to contribute, please create a pull request.
-
-## License
-
-This project is licensed under the MIT License.
