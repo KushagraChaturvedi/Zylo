@@ -1,50 +1,102 @@
-# Zylo
+# Project Title
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A brief description of your project.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fast Refresh with Vite
+- ESLint for code quality
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+Make sure you have the following installed on your machine:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js (version >= 14)
+- npm (comes with Node.js)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo
+   ```
+
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Project
+
+To start the development server, run:
+```bash
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Open your browser and navigate to `http://localhost:3000` (or the specified port in your console).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Building for Production
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+To create a production build, run:
+```bash
+npm run build
 ```
+
+The output will be in the `dist` directory.
+
+## ESLint Configuration
+
+This project includes ESLint for code quality. To enable type-aware lint rules, update the configuration as follows:
+
+1. Open the `eslint.config.js` file and modify the `parserOptions`:
+   ```javascript
+   export default tseslint.config({
+     languageOptions: {
+       parserOptions: {
+         project: ['./tsconfig.node.json', './tsconfig.app.json'],
+         tsconfigRootDir: import.meta.dirname,
+       },
+     },
+   });
+   ```
+
+2. Replace `tseslint.configs.recommended` with:
+   - `tseslint.configs.recommendedTypeChecked`
+   - or `tseslint.configs.strictTypeChecked`
+
+3. Optionally add stylistic rules:
+   ```javascript
+   ...tseslint.configs.stylisticTypeChecked
+   ```
+
+4. Install the React ESLint plugin:
+   ```bash
+   npm install eslint-plugin-react --save-dev
+   ```
+
+5. Update the `eslint.config.js` file:
+   ```javascript
+   import react from 'eslint-plugin-react';
+
+   export default tseslint.config({
+     settings: { react: { version: '18.3' } },
+     plugins: {
+       react,
+     },
+     rules: {
+       ...react.configs.recommended.rules,
+       ...react.configs['jsx-runtime'].rules,
+     },
+   });
+   ```
+
+## Contributing
+
+If you want to contribute, please create a pull request.
+
+## License
+
+This project is licensed under the MIT License.
