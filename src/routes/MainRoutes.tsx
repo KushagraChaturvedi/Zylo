@@ -1,6 +1,8 @@
 // Pages Import
 import {
-  Home
+  Home,
+  Community,
+  Classes
 } from "../pages";
 
 // project imports
@@ -22,6 +24,14 @@ const MainRoutes = (isLoggedIn: boolean) => {
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: 'community',
+        element: <Community />,
+      },
+      {
+        path: 'classes',
+        element: <Classes />,
       },
       {
         path: '*',
