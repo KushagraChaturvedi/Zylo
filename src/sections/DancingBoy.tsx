@@ -39,7 +39,7 @@ function DancingBoy() {
             </div>
             <div className="pt-12 pb-8">
               <h3 className="font-bold text-2xl md:text-3xl">
-                Zumba Choreography
+                Community
               </h3>
               <p className="text-gray-600">
                 Follow our dance choreography videos to learn different dance

@@ -1,9 +1,5 @@
 // Pages Import
-import {
-  Home,
-  Community,
-  Classes
-} from "../pages";
+import { Home, Community, Classes, Services, Profile } from "../pages";
 
 // project imports
 import Layout from "../Layout";
@@ -26,16 +22,32 @@ const MainRoutes = (isLoggedIn: boolean) => {
         element: <Home />,
       },
       {
-        path: 'community',
+        path: "community",
         element: <Community />,
       },
+      ...(isLoggedIn
+        ? [
+            {
+              path: "classes",
+              element: <Classes />,
+            },
+            {
+              path: "profile",
+              element: <Profile />,
+            },
+          ]
+        : []),
       {
-        path: 'classes',
-        element: <Classes />,
+        path: "services",
+        element: <Services />,
       },
       {
-        path: '*',
-        element: isLoggedIn ? <Navigate to="/" /> : <Navigate to="/auth/login" />,
+        path: "*",
+        element: isLoggedIn ? (
+          <Navigate to="/" />
+        ) : (
+          <Navigate to="/auth/login" />
+        ),
       },
     ],
   };

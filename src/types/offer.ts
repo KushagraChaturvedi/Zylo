@@ -1,10 +1,10 @@
 export interface OfferCardData {
-  price: string;
-  originalPrice: string;
-  monthlyPrice: string;
-  offerDetails: string[];
-  buttonText: string;
-  duration: string;
-  highlights: string[];
+  id: number;
+  title: string;
+  amount: string;
+  discount: string;
+  discountedAmount: string;
+  duration: number;
+  description: string;
   colorPalette?: "blue" | "orange" | "pinkPurple";
 }

@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 function SignUp() {
+  const navigate = useNavigate();
   return (
     <section className="py-16">
-      <div className="container mx-auto text-center md:text-left">
+      <div className="container mx-auto text-center md:text-left bg-gray-100 px-4">
         <div className="md:flex items-center justify-between">
           <div>
             <h2 className="text-4xl font-bold text-gray-900">
@@ -65,7 +68,7 @@ function SignUp() {
             className="rounded-lg w-full md:w-80 md:ml-8"
           />
         </div>
-        <button className="bg-amber-400 text-black hover:bg-stone-900 hover:text-gray-50 py-3 px-6 rounded-full text-lg font-bold">
+        <button onClick={() => {navigate('/auth/signup')}}  className="bg-amber-400 text-black hover:bg-stone-900 hover:text-gray-50 py-3 px-6 rounded-full text-lg font-bold">
           Sign Up
         </button>
       </div>
