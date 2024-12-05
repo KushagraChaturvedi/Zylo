@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, Method } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../store/UserContext";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -10,6 +11,7 @@ export function useApi() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { logout } = useUser(); // Access the logout function from UserContext
 
   const authToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
@@ -18,12 +20,13 @@ export function useApi() {
     method: Method,
     url: string,
     data: any = null,
-    config: AxiosRequestConfig = {}
+    config: AxiosRequestConfig = {},
+    useAuth: boolean = false
   ) => {
     setLoading(true);
     setError(null);
 
-    if (authToken) {
+    if (useAuth && authToken) {
       config.headers = {
         ...config.headers,
         Authorization: `Bearer ${authToken}`,
@@ -42,7 +45,7 @@ export function useApi() {
 
       return { data: response.data, error: null };
     } catch (err: any) {
-      if (err.response && err.response.status === 401 && refreshToken) {
+      if (err.response && err.response.status === 401 && useAuth && refreshToken) {
         try {
           const refreshResponse = await api.post("/refresh/", { refresh: refreshToken });
           const newAccessToken = refreshResponse.data.access;
@@ -56,7 +59,7 @@ export function useApi() {
           const retryResponse = await api.request({ method, url, data, ...config });
           return { data: retryResponse.data, error: null };
         } catch (refreshError: any) {
-          navigate("/login");
+          logout();
         }
       } else if (err.response) {
         setError(err.response.data.message || "Server error");
